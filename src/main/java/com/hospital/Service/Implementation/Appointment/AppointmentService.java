@@ -36,7 +36,8 @@ public class AppointmentService implements IAppointmentService {
 
     @Override
     public GlobalResponse getAppointment(Integer appointmentId) {
-        Appointment appointment = appointmentRepository.getOne(appointmentId);
+        Appointment appointment = appointmentRepository.findById(appointmentId)
+                .orElse(new Appointment());
         GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();

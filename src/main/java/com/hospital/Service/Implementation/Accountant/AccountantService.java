@@ -1,6 +1,7 @@
 package com.hospital.Service.Implementation.Accountant;
 
 import com.hospital.Entity.Accountant;
+import com.hospital.Exception.ExceptionHandler;
 import com.hospital.Repository.Interface.IAccountantRepository;
 import com.hospital.Response.ErrorMessages;
 import com.hospital.Response.GlobalResponse;
@@ -33,7 +34,8 @@ public class AccountantService implements IAccountantService {
 
     @Override
     public GlobalResponse getAccountant(Integer accountantId) {
-        Accountant accountant = accountantRepository.getOne(accountantId);
+        Accountant accountant = accountantRepository.findById(accountantId)
+                .orElse(new Accountant());
         GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
