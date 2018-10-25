@@ -6,13 +6,14 @@ import com.hospital.Repository.Interface.IAccountantRepository;
 import com.hospital.Response.ErrorMessages;
 import com.hospital.Response.GlobalResponse;
 import com.hospital.Response.ResponseData;
+import com.hospital.Service.Base.BaseService;
 import com.hospital.Service.Interface.IAccountantService;
 import com.hospital.message.AppMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AccountantService implements IAccountantService {
+public class AccountantService extends BaseService implements IAccountantService {
 
     private IAccountantRepository accountantRepository;
 
@@ -24,7 +25,6 @@ public class AccountantService implements IAccountantService {
     @Override
     public GlobalResponse save(Accountant accountant) {
         accountant = accountantRepository.save(accountant);
-        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         responseData.setAccountant(accountant);
         globalResponse.setSuccess(true);
@@ -36,7 +36,6 @@ public class AccountantService implements IAccountantService {
     public GlobalResponse getAccountant(Integer accountantId) {
         Accountant accountant = accountantRepository.findById(accountantId)
                 .orElse(new Accountant());
-        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
 

@@ -5,6 +5,7 @@ import com.hospital.Repository.Interface.IDepartmentRepository;
 import com.hospital.Response.ErrorMessages;
 import com.hospital.Response.GlobalResponse;
 import com.hospital.Response.ResponseData;
+import com.hospital.Service.Base.BaseService;
 import com.hospital.Service.Interface.IDepartmentService;
 import com.hospital.message.AppMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class DepartmentService implements IDepartmentService {
+public class DepartmentService extends BaseService implements IDepartmentService {
 
     private IDepartmentRepository departmentRepository;
 
@@ -25,7 +26,6 @@ public class DepartmentService implements IDepartmentService {
     @Override
     public GlobalResponse save(Department department) {
         department = departmentRepository.save(department);
-        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
 
         responseData.setDepartment(department);
@@ -37,7 +37,6 @@ public class DepartmentService implements IDepartmentService {
     @Override
     public GlobalResponse getDepartment(Integer departmentId) {
         Department department = departmentRepository.getOne(departmentId);
-        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
 
@@ -56,7 +55,6 @@ public class DepartmentService implements IDepartmentService {
     @Override
     public GlobalResponse getDepartments() {
         List<Department> departmentList = departmentRepository.findAll();
-        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
 

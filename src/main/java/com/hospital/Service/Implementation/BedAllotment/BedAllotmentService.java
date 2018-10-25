@@ -5,6 +5,7 @@ import com.hospital.Repository.Interface.IBedAllotmentRepository;
 import com.hospital.Response.ErrorMessages;
 import com.hospital.Response.GlobalResponse;
 import com.hospital.Response.ResponseData;
+import com.hospital.Service.Base.BaseService;
 import com.hospital.Service.Interface.IBedAllotmentService;
 import com.hospital.message.AppMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BedAllotmentService implements IBedAllotmentService {
+public class BedAllotmentService extends BaseService implements IBedAllotmentService {
 
     private IBedAllotmentRepository bedAllotmentRepository;
 
@@ -25,7 +26,6 @@ public class BedAllotmentService implements IBedAllotmentService {
     @Override
     public GlobalResponse save(BedAllotment bedAllotment) {
         bedAllotment = bedAllotmentRepository.save(bedAllotment);
-        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
 
         responseData.setBedAllotment(bedAllotment);
@@ -37,7 +37,6 @@ public class BedAllotmentService implements IBedAllotmentService {
     @Override
     public GlobalResponse getBedAllotment(Integer bedId) {
         BedAllotment bedAllotment = bedAllotmentRepository.getOne(bedId);
-        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
 
@@ -56,7 +55,6 @@ public class BedAllotmentService implements IBedAllotmentService {
     @Override
     public GlobalResponse getBedAllotments() {
         List<BedAllotment> bedAllotmentList = bedAllotmentRepository.findAll();
-        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
 
