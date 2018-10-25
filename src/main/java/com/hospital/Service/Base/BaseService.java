@@ -10,13 +10,4 @@ public class BaseService {
 
     @Autowired
     protected GlobalResponse globalResponse;
-
-    @Autowired
-    protected ResponseData responseData;
-
-    @Autowired
-    protected Messages messages;
-
-    @Autowired
-    protected ErrorMessages errorMessages;
 }

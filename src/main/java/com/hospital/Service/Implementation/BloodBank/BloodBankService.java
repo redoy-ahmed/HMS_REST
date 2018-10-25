@@ -26,7 +26,7 @@ public class BloodBankService extends BaseService implements IBloodBankService {
     @Override
     public GlobalResponse save(BloodBank bloodBank) {
         bloodBank = bloodBankRepository.save(bloodBank);
-
+        ResponseData responseData = new ResponseData();
         responseData.setBloodBank(bloodBank);
         globalResponse.setSuccess(true);
         globalResponse.setResponseData(responseData);
@@ -37,7 +37,8 @@ public class BloodBankService extends BaseService implements IBloodBankService {
     public GlobalResponse getBloodGroup(Integer bloodGroupId) {
         BloodBank bloodBank = bloodBankRepository.findById(bloodGroupId)
                 .orElse(new BloodBank());
-
+        ResponseData responseData = new ResponseData();
+        ErrorMessages errorMessages = new ErrorMessages();
         if (bloodBank.getBloodGroupId() != null) {
             responseData.setBloodBank(bloodBank);
             globalResponse.setSuccess(true);
@@ -53,7 +54,8 @@ public class BloodBankService extends BaseService implements IBloodBankService {
     @Override
     public GlobalResponse getBloodGroups() {
         List<BloodBank> bloodBankList = bloodBankRepository.findAll();
-
+        ResponseData responseData = new ResponseData();
+        ErrorMessages errorMessages = new ErrorMessages();
         if (bloodBankList.size() > 0) {
             responseData.setBloodBankList(bloodBankList);
             globalResponse.setSuccess(true);

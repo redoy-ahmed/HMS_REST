@@ -26,6 +26,7 @@ public class BloodDonorService extends BaseService implements IBloodDonorService
     @Override
     public GlobalResponse save(BloodDonor bloodDonor) {
         bloodDonor = bloodDonorRepository.save(bloodDonor);
+        ResponseData responseData = new ResponseData();
         responseData.setBloodDonor(bloodDonor);
         globalResponse.setSuccess(true);
         globalResponse.setResponseData(responseData);
@@ -37,6 +38,8 @@ public class BloodDonorService extends BaseService implements IBloodDonorService
         BloodDonor bloodDonor = bloodDonorRepository.findById(bloodDonorId)
                 .orElse(new BloodDonor());
 
+        ResponseData responseData = new ResponseData();
+        ErrorMessages errorMessages = new ErrorMessages();
         if (bloodDonor.getBloodDonorId() != null) {
             responseData.setBloodDonor(bloodDonor);
             globalResponse.setSuccess(true);
@@ -53,6 +56,8 @@ public class BloodDonorService extends BaseService implements IBloodDonorService
     public GlobalResponse getBloodDonors() {
         List<BloodDonor> bloodDonorList = bloodDonorRepository.findAll();
 
+        ResponseData responseData = new ResponseData();
+        ErrorMessages errorMessages = new ErrorMessages();
         if (bloodDonorList.size() > 0) {
             responseData.setBloodDonorList(bloodDonorList);
             globalResponse.setSuccess(true);

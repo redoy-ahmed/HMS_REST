@@ -27,6 +27,7 @@ public class DoctorService extends BaseService implements IDoctorService {
     public GlobalResponse save(Doctor doctor) {
         doctor = doctorRepository.save(doctor);
 
+        ResponseData responseData = new ResponseData();
         responseData.setDoctor(doctor);
         globalResponse.setSuccess(true);
         globalResponse.setResponseData(responseData);
@@ -38,6 +39,8 @@ public class DoctorService extends BaseService implements IDoctorService {
         Doctor doctor = doctorRepository.findById(doctorId)
                 .orElse(new Doctor());
 
+        ResponseData responseData = new ResponseData();
+        ErrorMessages errorMessages = new ErrorMessages();
         if (!doctor.getName().isEmpty()) {
             responseData.setDoctor(doctor);
             globalResponse.setSuccess(true);
@@ -54,6 +57,8 @@ public class DoctorService extends BaseService implements IDoctorService {
     public GlobalResponse getDoctors() {
         List<Doctor> doctorList = doctorRepository.findAll();
 
+        ResponseData responseData = new ResponseData();
+        ErrorMessages errorMessages = new ErrorMessages();
         if (doctorList.size() > 0) {
             responseData.setDoctorList(doctorList);
             globalResponse.setSuccess(true);

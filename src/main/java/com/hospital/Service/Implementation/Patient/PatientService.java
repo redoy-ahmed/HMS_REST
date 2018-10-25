@@ -27,6 +27,7 @@ public class PatientService extends BaseService implements IPatientService {
     @Override
     public GlobalResponse save(Patient patient) {
         patient = patientRepository.save(patient);
+        ResponseData responseData = new ResponseData();
         responseData.setPatient(patient);
         globalResponse.setSuccess(true);
         globalResponse.setResponseData(responseData);
@@ -36,6 +37,8 @@ public class PatientService extends BaseService implements IPatientService {
     @Override
     public GlobalResponse getPatient(Integer doctorId) {
         Patient patient = patientRepository.getOne(doctorId);
+        ResponseData responseData = new ResponseData();
+        ErrorMessages errorMessages = new ErrorMessages();
 
         if (!patient.getName().isEmpty()) {
             responseData.setPatient(patient);
@@ -52,6 +55,8 @@ public class PatientService extends BaseService implements IPatientService {
     @Override
     public GlobalResponse getPatients() {
         List<Patient> patientList = patientRepository.findAll();
+        ResponseData responseData = new ResponseData();
+        ErrorMessages errorMessages = new ErrorMessages();
 
         if (patientList.size() > 0) {
             responseData.setPatientList(patientList);

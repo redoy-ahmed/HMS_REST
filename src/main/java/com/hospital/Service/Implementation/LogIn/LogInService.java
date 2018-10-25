@@ -24,6 +24,8 @@ public class LogInService extends BaseService implements ILogInService {
     @Override
     public GlobalResponse logIn(String email, String password) {
         User user = userRepository.login(email, password);
+        ResponseData responseData = new ResponseData();
+        ErrorMessages errorMessages = new ErrorMessages();
 
         if (user != null) {
             responseData.setUser(user);

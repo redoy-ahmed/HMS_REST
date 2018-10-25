@@ -26,7 +26,7 @@ public class BedService extends BaseService implements IBedService {
     @Override
     public GlobalResponse save(Bed bed) {
         bed = bedRepository.save(bed);
-
+        ResponseData responseData = new ResponseData();
         responseData.setBed(bed);
         globalResponse.setSuccess(true);
         globalResponse.setResponseData(responseData);
@@ -37,7 +37,8 @@ public class BedService extends BaseService implements IBedService {
     public GlobalResponse getBed(Integer bedId) {
         Bed bed = bedRepository.findById(bedId)
                 .orElse(new Bed());
-
+        ResponseData responseData = new ResponseData();
+        ErrorMessages errorMessages = new ErrorMessages();
         if (bed.getBedId() != null) {
             responseData.setBed(bed);
             globalResponse.setSuccess(true);
@@ -53,7 +54,8 @@ public class BedService extends BaseService implements IBedService {
     @Override
     public GlobalResponse getBeds() {
         List<Bed> bedList = bedRepository.findAll();
-
+        ResponseData responseData = new ResponseData();
+        ErrorMessages errorMessages = new ErrorMessages();
         if (bedList.size() > 0) {
             responseData.setBedList(bedList);
             globalResponse.setSuccess(true);

@@ -26,7 +26,7 @@ public class DepartmentService extends BaseService implements IDepartmentService
     @Override
     public GlobalResponse save(Department department) {
         department = departmentRepository.save(department);
-
+        ResponseData responseData = new ResponseData();
         responseData.setDepartment(department);
         globalResponse.setSuccess(true);
         globalResponse.setResponseData(responseData);
@@ -38,6 +38,8 @@ public class DepartmentService extends BaseService implements IDepartmentService
         Department department = departmentRepository.findById(departmentId)
                 .orElse(new Department());
 
+        ResponseData responseData = new ResponseData();
+        ErrorMessages errorMessages = new ErrorMessages();
         if (department.getDepartmentId() != null) {
             responseData.setDepartment(department);
             globalResponse.setSuccess(true);
@@ -54,6 +56,8 @@ public class DepartmentService extends BaseService implements IDepartmentService
     public GlobalResponse getDepartments() {
         List<Department> departmentList = departmentRepository.findAll();
 
+        ResponseData responseData = new ResponseData();
+        ErrorMessages errorMessages = new ErrorMessages();
         if (departmentList.size() > 0) {
             responseData.setDepartmentList(departmentList);
             globalResponse.setSuccess(true);

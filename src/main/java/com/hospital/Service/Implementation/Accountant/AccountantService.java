@@ -25,6 +25,7 @@ public class AccountantService extends BaseService implements IAccountantService
     @Override
     public GlobalResponse save(Accountant accountant) {
         accountant = accountantRepository.save(accountant);
+        ResponseData responseData = new ResponseData();
         responseData.setAccountant(accountant);
         globalResponse.setSuccess(true);
         globalResponse.setResponseData(responseData);
@@ -35,6 +36,8 @@ public class AccountantService extends BaseService implements IAccountantService
     public GlobalResponse getAccountant(Integer accountantId) {
         Accountant accountant = accountantRepository.findById(accountantId)
                 .orElse(new Accountant());
+        ResponseData responseData = new ResponseData();
+        ErrorMessages errorMessages = new ErrorMessages();
 
         if (accountant.getAccountantId() != null) {
             responseData.setAccountant(accountant);

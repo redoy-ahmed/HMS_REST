@@ -27,6 +27,7 @@ public class DiagnosisReportService extends BaseService implements IDiagnosisRep
     public GlobalResponse save(DiagnosisReport diagnosisReport) {
         diagnosisReport = diagnosisReportRepository.save(diagnosisReport);
 
+        ResponseData responseData = new ResponseData();
         responseData.setDiagnosisReport(diagnosisReport);
         globalResponse.setSuccess(true);
         globalResponse.setResponseData(responseData);
@@ -38,6 +39,8 @@ public class DiagnosisReportService extends BaseService implements IDiagnosisRep
         DiagnosisReport diagnosisReport = diagnosisReportRepository.findById(diagnosisReportId)
                 .orElse(new DiagnosisReport());
 
+        ResponseData responseData = new ResponseData();
+        ErrorMessages errorMessages = new ErrorMessages();
         if (diagnosisReport.getDiagnosisReportId() != null) {
             responseData.setDiagnosisReport(diagnosisReport);
             globalResponse.setSuccess(true);
@@ -54,6 +57,8 @@ public class DiagnosisReportService extends BaseService implements IDiagnosisRep
     public GlobalResponse getDiagnosisReports() {
         List<DiagnosisReport> diagnosisReportList = diagnosisReportRepository.findAll();
 
+        ResponseData responseData = new ResponseData();
+        ErrorMessages errorMessages = new ErrorMessages();
         if (diagnosisReportList.size() > 0) {
             responseData.setDiagnosisReportList(diagnosisReportList);
             globalResponse.setSuccess(true);
