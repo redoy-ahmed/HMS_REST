@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class LogInService extends BaseService implements ILogInService {
+public class LogInService implements ILogInService {
 
     private ILogInRepository userRepository;
 
@@ -24,6 +24,7 @@ public class LogInService extends BaseService implements ILogInService {
     @Override
     public GlobalResponse logIn(String email, String password) {
         User user = userRepository.login(email, password);
+        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
 

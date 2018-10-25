@@ -5,7 +5,6 @@ import com.hospital.Repository.Interface.IAppointmentRepository;
 import com.hospital.Response.ErrorMessages;
 import com.hospital.Response.GlobalResponse;
 import com.hospital.Response.ResponseData;
-import com.hospital.Service.Base.BaseService;
 import com.hospital.Service.Interface.IAppointmentService;
 import com.hospital.message.AppMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AppointmentService extends BaseService implements IAppointmentService {
+public class AppointmentService implements IAppointmentService {
 
     private IAppointmentRepository appointmentRepository;
 
@@ -26,6 +25,7 @@ public class AppointmentService extends BaseService implements IAppointmentServi
     @Override
     public GlobalResponse save(Appointment appointment) {
         appointment = appointmentRepository.save(appointment);
+        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         responseData.setAppointment(appointment);
         globalResponse.setSuccess(true);
@@ -38,6 +38,7 @@ public class AppointmentService extends BaseService implements IAppointmentServi
         Appointment appointment = appointmentRepository.findById(appointmentId)
                 .orElse(new Appointment());
 
+        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
         if (appointment.getAppointmentId() != null) {
@@ -56,6 +57,7 @@ public class AppointmentService extends BaseService implements IAppointmentServi
     public GlobalResponse getAppointments() {
         List<Appointment> appointmentList = appointmentRepository.findAll();
 
+        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
         if (appointmentList.size() > 0) {

@@ -5,7 +5,6 @@ import com.hospital.Repository.Interface.IBedRepository;
 import com.hospital.Response.ErrorMessages;
 import com.hospital.Response.GlobalResponse;
 import com.hospital.Response.ResponseData;
-import com.hospital.Service.Base.BaseService;
 import com.hospital.Service.Interface.IBedService;
 import com.hospital.message.AppMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BedService extends BaseService implements IBedService {
+public class BedService implements IBedService {
 
     private IBedRepository bedRepository;
 
@@ -26,6 +25,7 @@ public class BedService extends BaseService implements IBedService {
     @Override
     public GlobalResponse save(Bed bed) {
         bed = bedRepository.save(bed);
+        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         responseData.setBed(bed);
         globalResponse.setSuccess(true);
@@ -37,6 +37,7 @@ public class BedService extends BaseService implements IBedService {
     public GlobalResponse getBed(Integer bedId) {
         Bed bed = bedRepository.findById(bedId)
                 .orElse(new Bed());
+        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
         if (bed.getBedId() != null) {
@@ -54,6 +55,7 @@ public class BedService extends BaseService implements IBedService {
     @Override
     public GlobalResponse getBeds() {
         List<Bed> bedList = bedRepository.findAll();
+        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
         if (bedList.size() > 0) {
