@@ -1,9 +1,11 @@
 package com.hospital.Response;
 
 import com.hospital.Entity.*;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class ResponseData {
 
     private User User;

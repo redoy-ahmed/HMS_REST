@@ -1,5 +1,8 @@
 package com.hospital.Response;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Messages {
 
     private String messages;

@@ -5,6 +5,7 @@ import com.hospital.Repository.Interface.IDiagnosisReportRepository;
 import com.hospital.Response.ErrorMessages;
 import com.hospital.Response.GlobalResponse;
 import com.hospital.Response.ResponseData;
+import com.hospital.Service.Base.BaseService;
 import com.hospital.Service.Interface.IDiagnosisReportService;
 import com.hospital.message.AppMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class DiagnosisReportService implements IDiagnosisReportService {
+public class DiagnosisReportService extends BaseService implements IDiagnosisReportService {
 
     private IDiagnosisReportRepository diagnosisReportRepository;
 
@@ -25,8 +26,6 @@ public class DiagnosisReportService implements IDiagnosisReportService {
     @Override
     public GlobalResponse save(DiagnosisReport diagnosisReport) {
         diagnosisReport = diagnosisReportRepository.save(diagnosisReport);
-        GlobalResponse globalResponse = new GlobalResponse();
-        ResponseData responseData = new ResponseData();
 
         responseData.setDiagnosisReport(diagnosisReport);
         globalResponse.setSuccess(true);
@@ -36,10 +35,8 @@ public class DiagnosisReportService implements IDiagnosisReportService {
 
     @Override
     public GlobalResponse getDiagnosisReport(Integer diagnosisReportId) {
-        DiagnosisReport diagnosisReport = diagnosisReportRepository.getOne(diagnosisReportId);
-        GlobalResponse globalResponse = new GlobalResponse();
-        ResponseData responseData = new ResponseData();
-        ErrorMessages errorMessages = new ErrorMessages();
+        DiagnosisReport diagnosisReport = diagnosisReportRepository.findById(diagnosisReportId)
+                .orElse(new DiagnosisReport());
 
         if (diagnosisReport.getDiagnosisReportId() != null) {
             responseData.setDiagnosisReport(diagnosisReport);
@@ -56,9 +53,6 @@ public class DiagnosisReportService implements IDiagnosisReportService {
     @Override
     public GlobalResponse getDiagnosisReports() {
         List<DiagnosisReport> diagnosisReportList = diagnosisReportRepository.findAll();
-        GlobalResponse globalResponse = new GlobalResponse();
-        ResponseData responseData = new ResponseData();
-        ErrorMessages errorMessages = new ErrorMessages();
 
         if (diagnosisReportList.size() > 0) {
             responseData.setDiagnosisReportList(diagnosisReportList);

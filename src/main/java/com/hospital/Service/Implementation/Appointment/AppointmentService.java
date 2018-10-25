@@ -26,7 +26,6 @@ public class AppointmentService extends BaseService implements IAppointmentServi
     @Override
     public GlobalResponse save(Appointment appointment) {
         appointment = appointmentRepository.save(appointment);
-        ResponseData responseData = new ResponseData();
 
         responseData.setAppointment(appointment);
         globalResponse.setSuccess(true);
@@ -38,8 +37,6 @@ public class AppointmentService extends BaseService implements IAppointmentServi
     public GlobalResponse getAppointment(Integer appointmentId) {
         Appointment appointment = appointmentRepository.findById(appointmentId)
                 .orElse(new Appointment());
-        ResponseData responseData = new ResponseData();
-        ErrorMessages errorMessages = new ErrorMessages();
 
         if (appointment.getAppointmentId() != null) {
             responseData.setAppointment(appointment);
@@ -56,8 +53,6 @@ public class AppointmentService extends BaseService implements IAppointmentServi
     @Override
     public GlobalResponse getAppointments() {
         List<Appointment> appointmentList = appointmentRepository.findAll();
-        ResponseData responseData = new ResponseData();
-        ErrorMessages errorMessages = new ErrorMessages();
 
         if (appointmentList.size() > 0) {
             responseData.setAppointmentList(appointmentList);

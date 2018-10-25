@@ -1,6 +1,5 @@
 package com.hospital.Controller.Patient;
 
-import com.hospital.Entity.Doctor;
 import com.hospital.Entity.Patient;
 import com.hospital.Response.GlobalResponse;
 import com.hospital.Service.Interface.IPatientService;

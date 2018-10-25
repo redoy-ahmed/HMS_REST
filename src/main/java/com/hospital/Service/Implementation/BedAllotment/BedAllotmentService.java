@@ -26,7 +26,6 @@ public class BedAllotmentService extends BaseService implements IBedAllotmentSer
     @Override
     public GlobalResponse save(BedAllotment bedAllotment) {
         bedAllotment = bedAllotmentRepository.save(bedAllotment);
-        ResponseData responseData = new ResponseData();
 
         responseData.setBedAllotment(bedAllotment);
         globalResponse.setSuccess(true);
@@ -36,9 +35,8 @@ public class BedAllotmentService extends BaseService implements IBedAllotmentSer
 
     @Override
     public GlobalResponse getBedAllotment(Integer bedId) {
-        BedAllotment bedAllotment = bedAllotmentRepository.getOne(bedId);
-        ResponseData responseData = new ResponseData();
-        ErrorMessages errorMessages = new ErrorMessages();
+        BedAllotment bedAllotment = bedAllotmentRepository.findById(bedId)
+                .orElse(new BedAllotment());
 
         if (bedAllotment.getBedAllotmentId() != null) {
             responseData.setBedAllotment(bedAllotment);

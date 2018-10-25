@@ -5,6 +5,7 @@ import com.hospital.Repository.Interface.IBloodDonorRepository;
 import com.hospital.Response.ErrorMessages;
 import com.hospital.Response.GlobalResponse;
 import com.hospital.Response.ResponseData;
+import com.hospital.Service.Base.BaseService;
 import com.hospital.Service.Interface.IBloodDonorService;
 import com.hospital.message.AppMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BloodDonorService implements IBloodDonorService {
+public class BloodDonorService extends BaseService implements IBloodDonorService {
 
     private IBloodDonorRepository bloodDonorRepository;
 
@@ -25,9 +26,6 @@ public class BloodDonorService implements IBloodDonorService {
     @Override
     public GlobalResponse save(BloodDonor bloodDonor) {
         bloodDonor = bloodDonorRepository.save(bloodDonor);
-        GlobalResponse globalResponse = new GlobalResponse();
-        ResponseData responseData = new ResponseData();
-
         responseData.setBloodDonor(bloodDonor);
         globalResponse.setSuccess(true);
         globalResponse.setResponseData(responseData);
@@ -36,10 +34,8 @@ public class BloodDonorService implements IBloodDonorService {
 
     @Override
     public GlobalResponse getBloodDonor(Integer bloodDonorId) {
-        BloodDonor bloodDonor = bloodDonorRepository.getOne(bloodDonorId);
-        GlobalResponse globalResponse = new GlobalResponse();
-        ResponseData responseData = new ResponseData();
-        ErrorMessages errorMessages = new ErrorMessages();
+        BloodDonor bloodDonor = bloodDonorRepository.findById(bloodDonorId)
+                .orElse(new BloodDonor());
 
         if (bloodDonor.getBloodDonorId() != null) {
             responseData.setBloodDonor(bloodDonor);
@@ -56,9 +52,6 @@ public class BloodDonorService implements IBloodDonorService {
     @Override
     public GlobalResponse getBloodDonors() {
         List<BloodDonor> bloodDonorList = bloodDonorRepository.findAll();
-        GlobalResponse globalResponse = new GlobalResponse();
-        ResponseData responseData = new ResponseData();
-        ErrorMessages errorMessages = new ErrorMessages();
 
         if (bloodDonorList.size() > 0) {
             responseData.setBloodDonorList(bloodDonorList);
