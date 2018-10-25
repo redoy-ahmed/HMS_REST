@@ -4,7 +4,12 @@ import com.hospital.Entity.Patient;
 import com.hospital.Response.GlobalResponse;
 import com.hospital.Service.Interface.IPatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 public class PatientController {
@@ -28,7 +33,16 @@ public class PatientController {
     }
 
     @GetMapping("/api/patient/getAll")
-    public GlobalResponse getAllPatients() {
-        return patientService.getPatients();
+    public ResponseEntity<GlobalResponse> getAllPatients() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("test", "test");
+        return ResponseEntity.accepted().headers(headers).body(patientService.getPatients());
+    }
+
+    @GetMapping("/api/patient/getAlll")
+    public ResponseEntity<GlobalResponse> getAll(@RequestHeader HttpHeaders headers, HttpServletResponse httpServletResponse) {
+        httpServletResponse.addHeader("test1", "test1");
+        GlobalResponse globalResponse = patientService.getPatients();
+        return ResponseEntity.accepted().body(globalResponse);
     }
 }
