@@ -5,7 +5,6 @@ import com.hospital.Repository.Interface.IDepartmentRepository;
 import com.hospital.Response.ErrorMessages;
 import com.hospital.Response.GlobalResponse;
 import com.hospital.Response.ResponseData;
-import com.hospital.Service.Base.BaseService;
 import com.hospital.Service.Interface.IDepartmentService;
 import com.hospital.message.AppMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class DepartmentService extends BaseService implements IDepartmentService {
+public class DepartmentService implements IDepartmentService {
 
     private IDepartmentRepository departmentRepository;
 
@@ -26,6 +25,7 @@ public class DepartmentService extends BaseService implements IDepartmentService
     @Override
     public GlobalResponse save(Department department) {
         department = departmentRepository.save(department);
+        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         responseData.setDepartment(department);
         globalResponse.setSuccess(true);
@@ -37,7 +37,7 @@ public class DepartmentService extends BaseService implements IDepartmentService
     public GlobalResponse getDepartment(Integer departmentId) {
         Department department = departmentRepository.findById(departmentId)
                 .orElse(new Department());
-
+        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
         if (department.getDepartmentId() != null) {
@@ -55,7 +55,7 @@ public class DepartmentService extends BaseService implements IDepartmentService
     @Override
     public GlobalResponse getDepartments() {
         List<Department> departmentList = departmentRepository.findAll();
-
+        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
         if (departmentList.size() > 0) {

@@ -5,7 +5,6 @@ import com.hospital.Repository.Interface.IBedAllotmentRepository;
 import com.hospital.Response.ErrorMessages;
 import com.hospital.Response.GlobalResponse;
 import com.hospital.Response.ResponseData;
-import com.hospital.Service.Base.BaseService;
 import com.hospital.Service.Interface.IBedAllotmentService;
 import com.hospital.message.AppMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BedAllotmentService extends BaseService implements IBedAllotmentService {
+public class BedAllotmentService implements IBedAllotmentService {
 
     private IBedAllotmentRepository bedAllotmentRepository;
 
@@ -26,6 +25,7 @@ public class BedAllotmentService extends BaseService implements IBedAllotmentSer
     @Override
     public GlobalResponse save(BedAllotment bedAllotment) {
         bedAllotment = bedAllotmentRepository.save(bedAllotment);
+        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         responseData.setBedAllotment(bedAllotment);
         globalResponse.setSuccess(true);
@@ -37,7 +37,7 @@ public class BedAllotmentService extends BaseService implements IBedAllotmentSer
     public GlobalResponse getBedAllotment(Integer bedId) {
         BedAllotment bedAllotment = bedAllotmentRepository.findById(bedId)
                 .orElse(new BedAllotment());
-
+        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
         if (bedAllotment.getBedAllotmentId() != null) {
@@ -55,6 +55,7 @@ public class BedAllotmentService extends BaseService implements IBedAllotmentSer
     @Override
     public GlobalResponse getBedAllotments() {
         List<BedAllotment> bedAllotmentList = bedAllotmentRepository.findAll();
+        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
 

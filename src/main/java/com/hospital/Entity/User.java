@@ -29,6 +29,9 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
+    @Column(name = "token")
+    private String token;
+
     public Integer getUserId() {
         return userId;
     }
@@ -75,5 +78,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

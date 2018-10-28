@@ -5,7 +5,6 @@ import com.hospital.Repository.Interface.ILogInRepository;
 import com.hospital.Response.ErrorMessages;
 import com.hospital.Response.GlobalResponse;
 import com.hospital.Response.ResponseData;
-import com.hospital.Service.Base.BaseService;
 import com.hospital.Service.Interface.ILogInService;
 import com.hospital.message.AppMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +37,15 @@ public class LogInService implements ILogInService {
             globalResponse.setErrorMessages(errorMessages);
         }
         return globalResponse;
+    }
+
+    @Override
+    public void updateToken(User user) {
+        userRepository.save(user);
+    }
+
+    @Override
+    public String getToken(String token) {
+        return userRepository.getToken(token);
     }
 }

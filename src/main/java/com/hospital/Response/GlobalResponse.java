@@ -1,8 +1,5 @@
 package com.hospital.Response;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class GlobalResponse {
 
     private boolean Success;
@@ -18,27 +15,27 @@ public class GlobalResponse {
         Success = success;
     }
 
-    public com.hospital.Response.ErrorMessages getErrorMessages() {
+    public ErrorMessages getErrorMessages() {
         return ErrorMessages;
     }
 
-    public void setErrorMessages(com.hospital.Response.ErrorMessages errorMessages) {
+    public void setErrorMessages(ErrorMessages errorMessages) {
         ErrorMessages = errorMessages;
     }
 
-    public com.hospital.Response.Messages getMessages() {
+    public Messages getMessages() {
         return Messages;
     }
 
-    public void setMessages(com.hospital.Response.Messages messages) {
+    public void setMessages(Messages messages) {
         Messages = messages;
     }
 
-    public com.hospital.Response.ResponseData getResponseData() {
+    public ResponseData getResponseData() {
         return ResponseData;
     }
 
-    public void setResponseData(com.hospital.Response.ResponseData responseData) {
+    public void setResponseData(ResponseData responseData) {
         ResponseData = responseData;
     }
 }

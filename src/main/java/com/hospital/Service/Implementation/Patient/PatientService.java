@@ -5,7 +5,6 @@ import com.hospital.Repository.Interface.IPatientRepository;
 import com.hospital.Response.ErrorMessages;
 import com.hospital.Response.GlobalResponse;
 import com.hospital.Response.ResponseData;
-import com.hospital.Service.Base.BaseService;
 import com.hospital.Service.Interface.IPatientService;
 import com.hospital.message.AppMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import java.util.List;
 
 
 @Service
-public class PatientService extends BaseService implements IPatientService {
+public class PatientService implements IPatientService {
 
     private IPatientRepository patientRepository;
 
@@ -27,6 +26,7 @@ public class PatientService extends BaseService implements IPatientService {
     @Override
     public GlobalResponse save(Patient patient) {
         patient = patientRepository.save(patient);
+        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         responseData.setPatient(patient);
         globalResponse.setSuccess(true);
@@ -37,6 +37,7 @@ public class PatientService extends BaseService implements IPatientService {
     @Override
     public GlobalResponse getPatient(Integer doctorId) {
         Patient patient = patientRepository.getOne(doctorId);
+        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
 
@@ -55,6 +56,7 @@ public class PatientService extends BaseService implements IPatientService {
     @Override
     public GlobalResponse getPatients() {
         List<Patient> patientList = patientRepository.findAll();
+        GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
 
