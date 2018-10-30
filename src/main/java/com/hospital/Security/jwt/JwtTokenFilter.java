@@ -3,15 +3,20 @@ package com.hospital.Security.jwt;
 import io.jsonwebtoken.Jwts;
 import org.springframework.http.HttpHeaders;
 
+import javax.annotation.Priority;
 import javax.crypto.spec.SecretKeySpec;
+import javax.ws.rs.Priorities;
+import javax.ws.rs.Produces;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 import java.security.Key;
 
 @Provider
+@Priority(Priorities.AUTHENTICATION)
 public class JwtTokenFilter implements ContainerRequestFilter {
 
     @Override
