@@ -15,12 +15,10 @@ import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 import java.security.Key;
 
-@Provider
-@Priority(Priorities.AUTHENTICATION)
 public class JwtTokenFilter implements ContainerRequestFilter {
 
     @Override
-    public void filter(ContainerRequestContext containerRequestContext) throws IOException {
+    public void filter(ContainerRequestContext containerRequestContext) {
         if (!containerRequestContext.getUriInfo().getPath().equalsIgnoreCase("/api/login")) {
             try {
                 String token = containerRequestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
