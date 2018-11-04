@@ -8,10 +8,17 @@ import com.hospital.Response.ResponseData;
 import com.hospital.Service.Interface.ILogInService;
 import com.hospital.message.AppMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-@Service
-public class LogInService implements ILogInService {
+import java.util.HashSet;
+import java.util.Set;
+
+@Service(value = "userService")
+public class LogInService implements ILogInService, UserDetailsService {
 
     private ILogInRepository userRepository;
 
@@ -21,8 +28,8 @@ public class LogInService implements ILogInService {
     }
 
     @Override
-    public GlobalResponse logIn(String email, String password) {
-        User user = userRepository.login(email, password);
+    public GlobalResponse logIn(String name, String password) {
+        User user = userRepository.login(name, password);
         GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();
@@ -47,5 +54,21 @@ public class LogInService implements ILogInService {
     @Override
     public String getToken(String token) {
         return userRepository.getToken(token);
+    }
+
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
+        if(user == null){
+            throw new UsernameNotFoundException("Invalid name or password.");
+        }
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority(user));
+    }
+
+    private Set<SimpleGrantedAuthority> getAuthority(User user) {
+        Set<SimpleGrantedAuthority> authorities = new HashSet<>();
+        user.getRoles().forEach(role -> {
+            authorities.add(new SimpleGrantedAuthority("ROLE_" + role.getName()));
+        });
+        return authorities;
     }
 }

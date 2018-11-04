@@ -15,7 +15,7 @@ import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 import java.security.Key;
 
-public class JwtTokenFilter implements ContainerRequestFilter {
+/*public class JwtTokenFilter implements ContainerRequestFilter {
 
     @Override
     public void filter(ContainerRequestContext containerRequestContext) {
@@ -30,4 +30,4 @@ public class JwtTokenFilter implements ContainerRequestFilter {
             }
         }
     }
-}
+}*/
