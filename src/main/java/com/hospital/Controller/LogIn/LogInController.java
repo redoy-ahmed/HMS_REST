@@ -1,8 +1,8 @@
 package com.hospital.Controller.LogIn;
 
-import com.hospital.Config.TokenProvider;
 import com.hospital.Entity.User;
 import com.hospital.Response.GlobalResponse;
+import com.hospital.Security.jwt.TokenProvider;
 import com.hospital.Service.Interface.ILogInService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

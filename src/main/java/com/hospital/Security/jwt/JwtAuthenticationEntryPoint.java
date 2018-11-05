@@ -1,4 +1,4 @@
-package com.hospital.Config;
+package com.hospital.Security.jwt;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
@@ -13,9 +13,7 @@ import java.io.Serializable;
 public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Serializable {
 
     @Override
-    public void commence(HttpServletRequest request,
-                         HttpServletResponse response,
-                         AuthenticationException authException) throws IOException {
+    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
 
         response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
     }

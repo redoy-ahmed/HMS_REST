@@ -1,4 +1,4 @@
-package com.hospital.Config;
+package com.hospital.Security.jwt;
 
 import io.jsonwebtoken.*;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,7 +15,7 @@ import java.util.Date;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static com.hospital.Security.Token.Constants.*;
+import static com.hospital.Entity.Constants.*;
 
 @Component
 public class TokenProvider implements Serializable {
