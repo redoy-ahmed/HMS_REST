@@ -28,8 +28,8 @@ public class LogInService implements ILogInService, UserDetailsService {
     }
 
     @Override
-    public GlobalResponse logIn(String name, String password) {
-        User user = userRepository.login(name, password);
+    public GlobalResponse logIn(String username, String password) {
+        User user = userRepository.login(username, password);
         GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
         ErrorMessages errorMessages = new ErrorMessages();

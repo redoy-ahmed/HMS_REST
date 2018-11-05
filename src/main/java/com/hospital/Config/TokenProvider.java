@@ -80,5 +80,4 @@ public class TokenProvider implements Serializable {
 
         return new UsernamePasswordAuthenticationToken(userDetails, "", authorities);
     }
-
 }

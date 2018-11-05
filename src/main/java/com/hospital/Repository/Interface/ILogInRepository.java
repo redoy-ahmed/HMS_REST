@@ -13,8 +13,8 @@ import java.util.Optional;
 public interface ILogInRepository extends JpaRepository<User, Integer> {
 
     @Transactional(readOnly = true)
-    @Query(value = "select * from user where name =:name and password =:passwrod", nativeQuery = true)
-    User login(@Param("name") String name, @Param("passwrod") String passwrod);
+    @Query(value = "select * from user where username =:username and password =:passwrod", nativeQuery = true)
+    User login(@Param("username") String username, @Param("passwrod") String passwrod);
 
     @Transactional(readOnly = true)
     @Query(value = "select token from user where token =:token", nativeQuery = true)
