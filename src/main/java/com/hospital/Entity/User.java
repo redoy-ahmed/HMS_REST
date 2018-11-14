@@ -15,20 +15,20 @@ public class User {
     @Column(name = "user_id")
     private Integer userId;
 
-    @Column(name = "address")
-    private String address;
-
-    @Column(name = "email")
-    private String email;
-
     @Column(name = "username")
     private String username;
 
     @Column(name = "password")
     private String password;
 
-    @Column(name = "phone")
-    private String phone;
+    @Column(name = "mobile")
+    private String mobile;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "gender")
+    private String gender;
 
     @Column(name = "token")
     private String token;
@@ -47,22 +47,6 @@ public class User {
         this.userId = userId;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -79,12 +63,28 @@ public class User {
         this.password = password;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getToken() {

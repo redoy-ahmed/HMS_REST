@@ -61,7 +61,7 @@ public class LogInService implements ILogInService, UserDetailsService {
         if(user == null){
             throw new UsernameNotFoundException("Invalid name or password.");
         }
-        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority(user));
+        return new org.springframework.security.core.userdetails.User("admin", user.getPassword(), getAuthority(user));
     }
 
     private Set<SimpleGrantedAuthority> getAuthority(User user) {

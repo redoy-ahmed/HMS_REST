@@ -38,10 +38,10 @@ INSERT INTO `accountant` (`accountant_id`, `name`, `email`, `password`, `address
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `email` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `password` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `mobile` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `address` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `phone` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `gender` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `token` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   PRIMARY KEY (`user_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
@@ -50,8 +50,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `email`, `password`, `address`, `phone`) VALUES
-(1, 'admin', 'redoyahmed@gmail.com', 'admin', 'Dhaka, Bangladesh', '01515607169');
+INSERT INTO `user` (`user_id`, `username`, `password`, `mobile`, `address`, `gender`) VALUES
+(1, 'admin@gmail.com', 'admin', '01515607169', 'Dhaka, Bangladesh', 'Male');
 
 
 create table role (id bigint not null, description varchar(255), name varchar(255), primary key (id)) engine=MyISAM;
