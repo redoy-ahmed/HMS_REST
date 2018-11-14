@@ -5,16 +5,14 @@ import com.hospital.Response.GlobalResponse;
 import com.hospital.Security.jwt.TokenProvider;
 import com.hospital.Service.Interface.ILogInService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class LogInController {
@@ -30,9 +28,8 @@ public class LogInController {
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
-    @PostMapping("/api/login")
-    @ResponseBody
-    public ResponseEntity<GlobalResponse> login(@RequestBody User user) throws AuthenticationException {
+    @RequestMapping(value = "/api/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<GlobalResponse> login(User user) throws AuthenticationException {
         GlobalResponse globalResponse = authenticateUser(user.getUsername(), user.getPassword());
         if (globalResponse.isSuccess()) {
             User loggedUser = globalResponse.getResponseData().getUser();
