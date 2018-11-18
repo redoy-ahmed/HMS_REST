@@ -1,5 +1,6 @@
 package com.hospital.Response;
 
+import com.hospital.Dto.HomeDTO;
 import com.hospital.Entity.*;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +29,7 @@ public class ResponseData {
     private List<Department> DepartmentList;
     private DiagnosisReport diagnosisReport;
     private List<DiagnosisReport> DiagnosisReportList;
+    private HomeDTO homeDTO;
 
     public User getUser() {
         return User;
@@ -187,5 +189,13 @@ public class ResponseData {
 
     public void setDiagnosisReportList(List<DiagnosisReport> diagnosisReportList) {
         DiagnosisReportList = diagnosisReportList;
+    }
+
+    public HomeDTO getHomeDTO() {
+        return homeDTO;
+    }
+
+    public void setHomeDTO(HomeDTO homeDTO) {
+        this.homeDTO = homeDTO;
     }
 }
