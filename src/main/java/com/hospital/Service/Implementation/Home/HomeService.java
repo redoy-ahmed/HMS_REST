@@ -28,17 +28,41 @@ public class HomeService implements IHomeService {
 
     @Override
     public GlobalResponse getHomeInfo() {
-        int allotedBeds = iHomeRepository.allotedBedsCount();
+        int allottedBeds = iHomeRepository.allotedBedsCount();
         int reportsToBeDelivered = iHomeRepository.reportsToBeDeliveredCount();
-        int availablebloods = iHomeRepository.avaialableBloodsCount();
+        int availableBloods = iHomeRepository.availableBloodsCount();
+
+        int totalDoctorsAvailable = iHomeRepository.totalDoctorsAvailable();
+        int doctorsAvailableInDept1 = iHomeRepository.doctorsAvailableInDept1();
+        int doctorsAvailableInDept2 = iHomeRepository.doctorsAvailableInDept2();
+        int doctorsAvailableInDept3 = iHomeRepository.doctorsAvailableInDept3();
+        int doctorsAvailableInDept4 = iHomeRepository.doctorsAvailableInDept4();
+
+        int totalAppointedPatients = iHomeRepository.totalAppointedPatients();
+        int patientsAppointedInDept1 = iHomeRepository.patientsAppointedInDept1();
+        int patientsAppointedInDept2 = iHomeRepository.patientsAppointedInDept2();
+        int patientsAppointedInDept3 = iHomeRepository.patientsAppointedInDept3();
+        int patientsAppointedInDept4 = iHomeRepository.patientsAppointedInDept4();
 
         GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
 
         HomeDTO homeDTO = new HomeDTO();
-        homeDTO.setNoOfAllotedBeds(allotedBeds);
+        homeDTO.setNoOfAllottedBeds(allottedBeds);
         homeDTO.setNoOfReportsToBeDelivered(reportsToBeDelivered);
-        homeDTO.setNoOfAvailableBloodBags(availablebloods);
+        homeDTO.setNoOfAvailableBloodBags(availableBloods);
+
+        homeDTO.setNoOfTotalDoctors(totalDoctorsAvailable);
+        homeDTO.setNoOfDoctorsInDept1(doctorsAvailableInDept1);
+        homeDTO.setNoOfDoctorsInDept2(doctorsAvailableInDept2);
+        homeDTO.setNoOfDoctorsInDept3(doctorsAvailableInDept3);
+        homeDTO.setNoOfDoctorsInDept4(doctorsAvailableInDept4);
+
+        homeDTO.setNoOfTotalAppointedPatients(totalAppointedPatients);
+        homeDTO.setNoOfAppointedPatientsInDept1(patientsAppointedInDept1);
+        homeDTO.setNoOfAppointedPatientsInDept2(patientsAppointedInDept2);
+        homeDTO.setNoOfAppointedPatientsInDept3(patientsAppointedInDept3);
+        homeDTO.setNoOfAppointedPatientsInDept4(patientsAppointedInDept4);
 
         responseData.setHomeDTO(homeDTO);
         globalResponse.setSuccess(true);

@@ -28,7 +28,7 @@ public class HomeRepository implements IHomeRepository {
     }
 
     @Override
-    public int avaialableBloodsCount() {
+    public int availableBloodsCount() {
         Query query = entityManager.createNativeQuery("select count(status) from blood_bank");
         return query.getFirstResult();
     }

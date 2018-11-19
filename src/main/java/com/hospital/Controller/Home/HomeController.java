@@ -17,8 +17,8 @@ public class HomeController {
         this.homeService = homeService;
     }
 
-    @GetMapping("/api/home/getHomeGeneral")
-    public GlobalResponse getHomeInfoGeneral() {
+    @GetMapping("/api/home/getHomeInfo")
+    public GlobalResponse getHomeInfo() {
         return homeService.getHomeInfo();
     }
 }
