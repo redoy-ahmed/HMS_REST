@@ -1,6 +1,5 @@
 package com.hospital.Repository.Implementation;
 
-import com.hospital.Dto.HomeDTO;
 import com.hospital.Repository.Interface.IHomeRepository;
 import org.springframework.stereotype.Repository;
 
