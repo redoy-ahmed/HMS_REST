@@ -86,8 +86,16 @@ CREATE TABLE IF NOT EXISTS `appointment` (
 --
 
 INSERT INTO `appointment` (`appointment_id`, `appointment_timestamp`, `doctor_id`, `patient_id`) VALUES
-(1, 1449097200, 1, 2),
-(2, 1450220400, 1, 1);
+(1, 1449097200, 1, 1),
+(2, 1450220400, 1, 2),
+(3, 1450220400, 2, 3),
+(4, 1450220400, 2, 4),
+(5, 1450220400, 3, 5),
+(6, 1450220400, 3, 6),
+(7, 1450220400, 4, 7),
+(8, 1450220400, 4, 8),
+(9, 1450220400, 2, 9),
+(10, 1450220400, 3, 10);
 
 -- --------------------------------------------------------
 
@@ -255,9 +263,11 @@ CREATE TABLE IF NOT EXISTS `doctor` (
 --
 -- Dumping data for table `doctor`
 --
-
 INSERT INTO `doctor` (`doctor_id`, `name`, `email`, `password`, `address`, `phone`, `department_id`, `profile`) VALUES
-(1, 'Dr. Prashant Patil', 'doctor@doctor.com', 'doctor', 'Mumbai, India', '9800000000', 4, 'profile details here');
+(1, 'Dr. Abul Hossain', 'abul_hossain@gmail.com', 'doctor', 'Dhanmondi, Dhaka, Bangladesh', '01515607180', 1, 'profile details here'),
+(2, 'Dr. Rozi Afroze', 'rozi_afroze@gmail.com', 'doctor', 'Nikunjo, Dhaka, Bangladesh', '01715607180', 2, 'profile details here'),
+(3, 'Dr. Hafizur Rahman', 'dr_hafiz@gmail.com', 'doctor', 'Mirpur, Dhaka, Bangladesh', '0185607180', 3, 'profile details here'),
+(4, 'Dr. Kamal Hossain', 'kamal036@gmail.com', 'doctor', 'Azimpur, Dhaka, Bangladesh', '01915607180', 4, 'profile details here');
 
 -- --------------------------------------------------------
 
@@ -745,13 +755,13 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `patient_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` longtext COLLATE utf8_unicode_ci NOT NULL,
   `email` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `password` longtext COLLATE utf8_unicode_ci NOT NULL,
   `address` longtext COLLATE utf8_unicode_ci NOT NULL,
   `phone` longtext COLLATE utf8_unicode_ci NOT NULL,
   `sex` longtext COLLATE utf8_unicode_ci NOT NULL,
   `birth_date` longtext COLLATE utf8_unicode_ci NOT NULL,
   `age` int(11) NOT NULL,
   `blood_group` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `department_id` int(11) NOT NULL,
   `account_opening_timestamp` int(11) NOT NULL,
   PRIMARY KEY (`patient_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
@@ -760,8 +770,17 @@ CREATE TABLE IF NOT EXISTS `patient` (
 -- Dumping data for table `patient`
 --
 
-INSERT INTO `patient` (`patient_id`, `name`, `email`, `password`, `address`, `phone`, `sex`, `birth_date`, `age`, `blood_group`, `account_opening_timestamp`) VALUES
-(1, 'Anurag Basu', 'patient@patient.com', 'patient', 'Mumbai, India', '9800000000', 'male', '03/04/1981', 34, 'B+', 1448984171);
+INSERT INTO `patient` (`patient_id`, `name`, `email`, `address`, `phone`, `sex`, `birth_date`, `age`, `blood_group`, `department_id`, `account_opening_timestamp`) VALUES
+(1, 'Patient One', 'patient_one@gmail.com', 'Dhanmondi, Dhaka, Bangladesh', '0170000001', 'male', '03/04/1981', 34, 'B+', 1, 1448984171),
+(2, 'Patient Two', 'patient_two@gmail.com', 'Dhanmondi, Dhaka, Bangladesh', '0170000002', 'female', '04/05/1982', 33, 'AB+', 1, 1448984181),
+(3, 'Patient Three', 'patient_three@gmail.com', 'Dhanmondi, Dhaka, Bangladesh', '0170000003', 'male', '05/06/1983', 32, 'B-', 2, 1428984171),
+(4, 'Patient Four', 'patient_four@gmail.com', 'Dhanmondi, Dhaka, Bangladesh', '0170000004', 'female', '06/07/1984', 31, 'A+', 2, 1648984171),
+(5, 'Patient Five', 'patient_five@gmail.com', 'Dhanmondi, Dhaka, Bangladesh', '0170000005', 'male', '07/08/1985', 30, 'A-', 3, 1848984171),
+(6, 'Patient Six', 'patient_six@gmail.com', 'Dhanmondi, Dhaka, Bangladesh', '0170000006', 'female', '03/04/1986', 34, 'AB+', 3, 2448984171),
+(7, 'Patient Seven', 'patient_seven@gmail.com', 'Dhanmondi, Dhaka, Bangladesh', '0170000007', 'male', '03/04/1987', 33, 'O+', 4, 2448984171),
+(8, 'Patient Eight', 'patient_eight@gmail.com', 'Dhanmondi, Dhaka, Bangladesh', '0170000008', 'female', '03/04/1988', 32, 'O-', 4, 2848984171),
+(9, 'Patient Nine', 'patient_nine@gmail.com', 'Dhanmondi, Dhaka, Bangladesh', '0170000009', 'male', '03/04/1989', 31, 'B+', 1, 2248984171),
+(10, 'Patient Ten', 'patient_ten@gmail.com', 'Dhanmondi, Dhaka, Bangladesh', '0170000010', 'female', '03/04/1990', 30, 'B+', 2, 448984171);
 
 -- --------------------------------------------------------
 

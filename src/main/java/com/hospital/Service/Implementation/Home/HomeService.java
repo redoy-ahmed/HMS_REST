@@ -1,18 +1,10 @@
 package com.hospital.Service.Implementation.Home;
 
-import com.hospital.Dto.HomeDTO;
-import com.hospital.Entity.Bed;
-import com.hospital.Entity.Doctor;
-import com.hospital.Repository.Interface.IBedRepository;
-import com.hospital.Repository.Interface.IBloodBankRepository;
-import com.hospital.Repository.Interface.IDiagnosisReportRepository;
+import com.hospital.Dto.Home;
 import com.hospital.Repository.Interface.IHomeRepository;
-import com.hospital.Response.ErrorMessages;
 import com.hospital.Response.GlobalResponse;
 import com.hospital.Response.ResponseData;
-import com.hospital.Service.Interface.IBedService;
 import com.hospital.Service.Interface.IHomeService;
-import com.hospital.message.AppMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,24 +39,24 @@ public class HomeService implements IHomeService {
         GlobalResponse globalResponse = new GlobalResponse();
         ResponseData responseData = new ResponseData();
 
-        HomeDTO homeDTO = new HomeDTO();
-        homeDTO.setNoOfAllottedBeds(allottedBeds);
-        homeDTO.setNoOfReportsToBeDelivered(reportsToBeDelivered);
-        homeDTO.setNoOfAvailableBloodBags(availableBloods);
+        Home home = new Home();
+        home.setNoOfAllottedBeds(allottedBeds);
+        home.setNoOfReportsToBeDelivered(reportsToBeDelivered);
+        home.setNoOfAvailableBloodBags(availableBloods);
 
-        homeDTO.setNoOfTotalDoctors(totalDoctorsAvailable);
-        homeDTO.setNoOfDoctorsInDept1(doctorsAvailableInDept1);
-        homeDTO.setNoOfDoctorsInDept2(doctorsAvailableInDept2);
-        homeDTO.setNoOfDoctorsInDept3(doctorsAvailableInDept3);
-        homeDTO.setNoOfDoctorsInDept4(doctorsAvailableInDept4);
+        home.setNoOfTotalDoctors(totalDoctorsAvailable);
+        home.setNoOfDoctorsInDept1(doctorsAvailableInDept1);
+        home.setNoOfDoctorsInDept2(doctorsAvailableInDept2);
+        home.setNoOfDoctorsInDept3(doctorsAvailableInDept3);
+        home.setNoOfDoctorsInDept4(doctorsAvailableInDept4);
 
-        homeDTO.setNoOfTotalAppointedPatients(totalAppointedPatients);
-        homeDTO.setNoOfAppointedPatientsInDept1(patientsAppointedInDept1);
-        homeDTO.setNoOfAppointedPatientsInDept2(patientsAppointedInDept2);
-        homeDTO.setNoOfAppointedPatientsInDept3(patientsAppointedInDept3);
-        homeDTO.setNoOfAppointedPatientsInDept4(patientsAppointedInDept4);
+        home.setNoOfTotalAppointedPatients(totalAppointedPatients);
+        home.setNoOfAppointedPatientsInDept1(patientsAppointedInDept1);
+        home.setNoOfAppointedPatientsInDept2(patientsAppointedInDept2);
+        home.setNoOfAppointedPatientsInDept3(patientsAppointedInDept3);
+        home.setNoOfAppointedPatientsInDept4(patientsAppointedInDept4);
 
-        responseData.setHomeDTO(homeDTO);
+        responseData.setHome(home);
         globalResponse.setSuccess(true);
         globalResponse.setResponseData(responseData);
 

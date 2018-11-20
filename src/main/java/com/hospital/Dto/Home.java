@@ -1,6 +1,6 @@
 package com.hospital.Dto;
 
-public class HomeDTO {
+public class Home {
 
     private int noOfAllottedBeds;
     private int noOfReportsToBeDelivered;
